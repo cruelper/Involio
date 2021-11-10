@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <!--GUI colors-->
+    <color name="backrgound_color">#170F11</color>
+    <color name="darkBar_color">#291524</color>
+    <color name="lightBar_color">#5C164E</color>
+    <color name="text_color">#E2FCEF</color>
+    <color name="button_color">#9B287B</color>
+
+</resources>
