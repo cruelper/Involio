@@ -21,9 +21,6 @@ class HomeFragment : Fragment() {
 
     private lateinit var homeViewModel: HomeViewModel
     private var _binding: FragmentHomeBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -32,21 +29,12 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-
-        homeViewModel =
-            ViewModelProvider(this).get(HomeViewModel::class.java)
-
+        homeViewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        //val textView: TextView = binding.textHome
-        //homeViewModel.text.observe(viewLifecycleOwner, Observer {
-        //    textView.text = it
-        //})
-
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
-
 
         return root
     }
@@ -65,23 +53,25 @@ class HomeFragment : Fragment() {
         spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
 
             override fun onItemSelected(p0: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                val rvContacts = requireActivity().findViewById<View>(R.id.rvContacts) as RecyclerView
                 if (getPortfolios()[position] == "Добавить портфель"){
                     Toast.makeText(requireContext(), "Тут будет создание портфеля", Toast.LENGTH_SHORT).show()
-
 
                 }
                 else{
                     Toast.makeText(requireContext(), "Тут будет инфа по портфелю " + getPortfolios()[position], Toast.LENGTH_SHORT).show()
-                    val rvContacts = requireActivity().findViewById<View>(R.id.rvContacts) as RecyclerView
-                    // Initialize contacts
                     var contacts = Contact.createContactsList(20)
-                    // Create adapter passing in the sample user data
                     val adapter = ContactsAdapter(contacts)
-                    // Attach the adapter to the recyclerview to populate items
+
+                    adapter.setOnItemClickListener(object : ContactsAdapter.OnItemClickListener {
+                        override fun onItemClick(itemView: View?, position: Int) {
+                            val name = contacts[position].name
+                            Toast.makeText(requireContext(), "открывается вкладка с инфой по $name", Toast.LENGTH_SHORT).show()
+                        }
+                    })
+
                     rvContacts.adapter = adapter
-                    // Set layout manager to position the items
                     rvContacts.layoutManager = LinearLayoutManager(requireActivity())
-                    // That's all!
                 }
             }
 
@@ -105,14 +95,13 @@ class HomeFragment : Fragment() {
 }
 
 //класс для вывода акций
-class Contact(val name: String, val isOnline: Boolean) {
-
+class Contact(val name: String, val price: String, val num: Int,
+              val diff: String, val partInPortfolio: Float, val totalPrice: String) {
     companion object {
-        private var lastContactId = 0
         fun createContactsList(numContacts: Int): ArrayList<Contact> {
             val contacts = ArrayList<Contact>()
             for (i in 1..numContacts) {
-                contacts.add(Contact("Person " + ++lastContactId, i <= numContacts / 2))
+                contacts.add(Contact("AAPL", "148.3$", 3, "+12.3%", 53f, "444.9$"))
             }
             return contacts
         }
@@ -121,25 +110,47 @@ class Contact(val name: String, val isOnline: Boolean) {
 
 class ContactsAdapter (private val mContacts: List<Contact>) : RecyclerView.Adapter<ContactsAdapter.ViewHolder>()
 {
+    interface OnItemClickListener {
+        fun onItemClick(itemView: View?, position: Int)
+    }
+
+    private lateinit var listener: OnItemClickListener
+
+    fun setOnItemClickListener(listener: OnItemClickListener) {
+        this.listener = listener
+    }
+
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val nameTextView = itemView.findViewById<TextView>(R.id.contact_name)
-        val messageButton = itemView.findViewById<Button>(R.id.message_button)
+        val nameTextView = itemView.findViewById<TextView>(R.id.company_name)
+        val numAndPriceTextView = itemView.findViewById<TextView>(R.id.num_and_price)
+        val partInPortfolioTextView = itemView.findViewById<TextView>(R.id.part_in_portfolio)
+        val totalPriceTextView = itemView.findViewById<TextView>(R.id.total_price)
+        val diffTextView = itemView.findViewById<TextView>(R.id.diff)
+
+        init {
+            itemView.setOnClickListener {
+                val position = adapterPosition
+                if (position != RecyclerView.NO_POSITION) {
+                    listener.onItemClick(itemView, position)
+                }
+            }
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContactsAdapter.ViewHolder {
         val context = parent.context
         val inflater = LayoutInflater.from(context)
-        val contactView = inflater.inflate(R.layout.item_contact, parent, false)
+        val contactView = inflater.inflate(R.layout.item_stock, parent, false)
         return ViewHolder(contactView)
     }
 
     override fun onBindViewHolder(viewHolder: ContactsAdapter.ViewHolder, position: Int) {
         val contact: Contact = mContacts.get(position)
-        val textView = viewHolder.nameTextView
-        textView.setText(contact.name)
-        val button = viewHolder.messageButton
-        button.text = if (contact.isOnline) "Message" else "Offline"
-        button.isEnabled = contact.isOnline
+        viewHolder.nameTextView.setText(contact.name)
+        viewHolder.numAndPriceTextView.setText(contact.num.toString() + " * " + contact.price.toString())
+        viewHolder.partInPortfolioTextView.setText(contact.partInPortfolio.toString() + "%")
+        viewHolder.totalPriceTextView.setText(contact.totalPrice)
+        viewHolder.diffTextView.setText(contact.diff)
     }
 
     override fun getItemCount(): Int {

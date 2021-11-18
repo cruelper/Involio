@@ -8,6 +8,7 @@
     <fragment
         android:id="@+id/navigation_home"
         android:name="com.example.involio.ui.home.HomeFragment"
+        android:label="Портфели"
         tools:layout="@layout/fragment_home" />
 
     <fragment

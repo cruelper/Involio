@@ -10,10 +10,248 @@
         android:id="@+id/header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent">
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/total_price_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:background="@color/lightBar_color"
+            android:layout_marginTop="5dp"
+            android:padding="5dp">
+            <TextView
+                android:id="@+id/total_price_string"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="@+id/total_price_bar"
+                app:layout_constraintLeft_toLeftOf="@+id/total_price_bar"
+                android:text="Стоимость активов: "
+                android:textColor="@color/text_color"
+                android:textSize="18sp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="@+id/total_price_string"
+                app:layout_constraintRight_toRightOf="@id/total_price_bar"
+                android:text="2323,32$"
+                android:textColor="@color/text_color"
+                android:textSize="24sp"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/incom_bar"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@color/lightBar_color"
+            android:padding="5dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/total_price_bar"
+            app:layout_constraintRight_toLeftOf="@id/currency_bar"
+            app:layout_constraintBottom_toBottomOf="@id/currency_bar"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="5dp">
+
+
+            <TextView
+                android:id="@+id/incoms_string"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Доход:"
+                android:textColor="@color/text_color"
+                android:textSize="18sp"
+                app:layout_constraintLeft_toLeftOf="@+id/incom_bar"
+                app:layout_constraintTop_toTopOf="@+id/incom_bar" />
+
+            <TextView
+                android:id="@+id/my_incom_string"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Портфеля:"
+                android:textColor="@color/text_color"
+                android:textSize="18sp"
+                app:layout_constraintLeft_toLeftOf="@+id/incom_bar"
+                app:layout_constraintTop_toBottomOf="@+id/incoms_string" />
+
+            <TextView
+                android:id="@+id/sp500_incom_string"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="S&amp;P500:"
+                android:textColor="@color/text_color"
+                android:textSize="18sp"
+                app:layout_constraintLeft_toLeftOf="@id/my_incom_string"
+                app:layout_constraintTop_toBottomOf="@id/my_incom_string" />
+
+            <TextView
+                android:id="@+id/users_incom_string"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Пользователей приложения:"
+                android:textColor="@color/text_color"
+                android:textSize="18sp"
+                app:layout_constraintLeft_toLeftOf="@id/sp500_incom_string"
+                app:layout_constraintTop_toBottomOf="@id/sp500_incom_string" />
+
+            <TextView
+                android:id="@+id/my_incom_data"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="12%"
+                android:textColor="@color/text_color"
+                android:textSize="18sp"
+                app:layout_constraintRight_toRightOf="@id/incom_bar"
+                app:layout_constraintTop_toTopOf="@+id/my_incom_string" />
+
+            <TextView
+                android:id="@+id/sp500_incom_data"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="13.2%"
+                android:textColor="@color/text_color"
+                android:textSize="18sp"
+                app:layout_constraintRight_toRightOf="@id/incom_bar"
+                app:layout_constraintTop_toTopOf="@+id/sp500_incom_string" />
+
+            <TextView
+                android:id="@+id/users_incom_data"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="23.4%"
+                android:textColor="@color/text_color"
+                android:textSize="18sp"
+                app:layout_constraintRight_toRightOf="@id/incom_bar"
+                app:layout_constraintTop_toTopOf="@+id/users_incom_string" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/currency_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintRight_toRightOf="@id/total_price_bar"
+            app:layout_constraintTop_toTopOf="@id/incom_bar">
+            <Button
+                android:id="@+id/dollar_but"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="$"
+                android:background="@color/button_color"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:textColor="@color/text_color"
+                app:layout_constraintLeft_toLeftOf="@id/currency_bar"
+                app:layout_constraintTop_toTopOf="@id/currency_bar"
+                android:padding="5dp"
+                android:textSize="18sp"
+                android:minHeight="0dp"
+                android:minWidth="40dp" />
+
+            <Button
+                android:id="@+id/rubble_but"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="₽"
+                android:background="@color/button_color"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:textColor="@color/text_color"
+                app:layout_constraintLeft_toLeftOf="@id/currency_bar"
+                app:layout_constraintTop_toBottomOf="@id/dollar_but"
+                android:padding="5dp"
+                android:textSize="18sp"
+                android:minHeight="0dp"
+                android:minWidth="40dp"
+                android:layout_marginTop="5dp"/>
+
+            <Button
+                android:id="@+id/euro_but"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="€"
+                android:background="@color/button_color"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:textColor="@color/text_color"
+                app:layout_constraintLeft_toLeftOf="@id/currency_bar"
+                app:layout_constraintTop_toBottomOf="@id/rubble_but"
+                android:padding="5dp"
+                android:textSize="18sp"
+                android:minHeight="0dp"
+                android:minWidth="40dp"
+                android:layout_marginTop="5dp"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/incom_bar"
+            app:layout_constraintLeft_toLeftOf="@id/incom_bar"
+            android:layout_marginTop="5dp">
+
+            <Button
+                android:id="@+id/day_but"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="За день"
+                android:background="@color/button_color"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:textColor="@color/text_color"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:textSize="14sp"
+                android:minHeight="0dp"
+                android:minWidth="0dp"
+                android:padding="5dp" />
+            <Button
+                android:id="@+id/year_but"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="За год"
+                android:background="@color/button_color"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:textColor="@color/text_color"
+                app:layout_constraintLeft_toRightOf="@id/day_but"
+                app:layout_constraintRight_toLeftOf="@id/allTime_but"
+                app:layout_constraintTop_toTopOf="parent"
+                android:textSize="14sp"
+                android:minHeight="0dp"
+                android:minWidth="0dp"
+                android:padding="5dp"
+                android:layout_marginLeft="5dp"/>
+            <Button
+                android:id="@+id/allTime_but"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="За все время"
+                android:background="@color/button_color"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:textColor="@color/text_color"
+                app:layout_constraintLeft_toRightOf="@id/year_but"
+                app:layout_constraintRight_toLeftOf="@id/other_info_but"
+                app:layout_constraintTop_toTopOf="parent"
+                android:textSize="14sp"
+                android:minHeight="0dp"
+                android:minWidth="0dp"
+                android:padding="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="15dp"/>
+            <Button
+                android:id="@+id/other_info_but"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Подробности"
+                android:background="@color/button_color"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:textColor="@color/text_color"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:textSize="14sp"
+                android:minHeight="0dp"
+                android:padding="5dp" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvContacts"
@@ -23,5 +261,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/header" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

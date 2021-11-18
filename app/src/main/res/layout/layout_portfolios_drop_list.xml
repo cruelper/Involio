@@ -7,7 +7,7 @@
     android:layout_height="?attr/actionBarSize"
     android:ellipsize="marquee"
     android:textColor="@android:color/white"
-    android:textSize="18sp"
+    android:textSize="16sp"
     android:textStyle="bold"
     android:background="@color/lightBar_color"
     />
