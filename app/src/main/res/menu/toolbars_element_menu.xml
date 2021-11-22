@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+<!--    <item-->
+<!--        android:id="@+id/action_search"-->
+<!--        android:title="@android:string/search_go"-->
+<!--        android:icon="@drawable/icon_toolbar_search"-->
+<!--        yourapp:showAsAction="always|collapseActionView"-->
+<!--        yourapp:actionViewClass="android.support.v7.widget.SearchView" />-->
+
+    <item
+        android:id="@+id/select_portfolio"
+        android:title="Выбрать портфель"
+        android:icon="@drawable/ic_arrow_drop_down_picture"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/share_portfolio"
+        android:title="Поделиться портфелем"
+        android:icon="@drawable/ic_share_picture"
+        app:showAsAction="ifRoom" />
+
+</menu>
