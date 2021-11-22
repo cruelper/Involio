@@ -20,7 +20,10 @@ import android.view.ViewGroup
 
 import android.view.LayoutInflater
 import android.widget.TextView
+import com.example.involio.LogInActivity
 import com.example.involio.R
+import com.example.involio.StockContentActivity
+import com.example.involio.ui.tabbs.PlaceholderFragment
 
 
 class PortfolioSelectionClass : DialogFragment() {
@@ -57,6 +60,9 @@ class PortfolioSelectionClass : DialogFragment() {
             override fun onItemClick(itemView: View?, position: Int) {
                 val name = contacts[position].name
                 Toast.makeText(curActivity, "открывается вкладка с инфой по $name", Toast.LENGTH_SHORT).show()
+                if (itemView != null) {
+                    itemView.context.startActivity(Intent(itemView.context, StockContentActivity::class.java))
+                }
             }
         })
 

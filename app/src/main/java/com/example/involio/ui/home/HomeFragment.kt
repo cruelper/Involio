@@ -1,22 +1,13 @@
 package com.example.involio.ui.home
 
-import android.app.ActionBar
 import android.os.Bundle
 import android.view.*
 import android.widget.*
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.involio.R
 import com.example.involio.databinding.FragmentHomeBinding
-import androidx.appcompat.widget.AppCompatSpinner
-import com.example.involio.BottomMenuActivity
 import androidx.appcompat.app.AppCompatActivity
-import android.widget.TextView
-import androidx.fragment.app.FragmentManager
-import androidx.recyclerview.widget.ConcatAdapter
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import classes.*
 import android.view.MenuInflater
 
@@ -48,7 +39,7 @@ class HomeFragment : Fragment() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu, menuInflater: MenuInflater){
-        menuInflater.inflate(R.menu.toolbars_element_menu, menu)
+        menuInflater.inflate(R.menu.portfolios_toolbar_menu, menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

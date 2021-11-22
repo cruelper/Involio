@@ -9,4 +9,10 @@
         <item>Вторая запись</item>
         <item>Третья запись</item>
     </string-array>
+    <string name="title_activity_stock_content">StockContentActivity</string>
+    <string name="tab_text_1">В портфеле</string>
+    <string name="tab_text_2">Динамика цены</string>
+    <string name="tab_text_3">О компании</string>
+    <string name="tab_text_4">Сделки</string>
+
 </resources>

@@ -9,7 +9,19 @@
         android:roundIcon="@mipmap/ic_launcher_logo"
         android:supportsRtl="true"
         android:theme="@style/Theme.Involio">
+        <activity
+            android:name=".StockContentActivity"
+            android:exported="false"
+            android:label="@string/title_activity_stock_content"
+            android:theme="@style/Theme.Involio.NoActionBar" >
+            <intent-filter>
+                <action android:name="android.intent.action.LogInActivity" />
 
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <meta-data android:name="android.support.PARENT_ACTIVITY"
+                android:value=".BottomMenuActivity"/>
+        </activity>
         <activity
             android:name=".LogInActivity"
             android:exported="false">
@@ -19,7 +31,6 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".SignInActivity"
             android:exported="false">
