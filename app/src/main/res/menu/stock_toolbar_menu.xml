@@ -2,21 +2,10 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <item
-        android:id="@+id/add_stock_to_portfolio"
-        android:title="Добавить акцию в портфель"
-        android:icon="@drawable/ic_add_shopping_cart_picture"
-        app:showAsAction="ifRoom" />
-
-    <item
-        android:id="@+id/remove_stock_from_portfolio"
-        android:title="Продать акцию из портфеля"
-        android:icon="@drawable/ic_add_shopping_cart_picture"
-        app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/add_to_favorites"
-        android:title="Продать акцию из портфеля"
+        android:title="Добавить в закладки"
         android:icon="@drawable/ic_star_rate_picture"
         app:showAsAction="ifRoom" />
 </menu>

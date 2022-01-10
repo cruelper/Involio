@@ -14,6 +14,6 @@ class SecondTabFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_stock_content, container, false)
+        return inflater.inflate(R.layout.tab_second_fragment, container, false)
     }
 }

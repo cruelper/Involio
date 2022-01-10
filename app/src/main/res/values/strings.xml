@@ -14,5 +14,12 @@
     <string name="tab_text_2">Динамика цены</string>
     <string name="tab_text_3">О компании</string>
     <string name="tab_text_4">Сделки</string>
+    <string name="username">Имя пользователя</string>
+    <string name="authorization">Авторизация</string>
+    <string name="loginBut">Войти</string>
+    <string name="email">Электронная почта</string>
+    <string name="password">Пароль</string>
+    <string name="registration">Регистрация</string>
+    <string name="registrationBut">Зарегистрироваться</string>
 
 </resources>

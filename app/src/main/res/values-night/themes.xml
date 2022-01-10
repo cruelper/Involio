@@ -1,6 +1,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Theme.Involio" parent="Theme.AppCompat.DayNight.DarkActionBar">
+        <item name="android:forceDarkAllowed">false</item>
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/lightBar_color</item>
         <item name="colorPrimaryVariant">@color/darkBar_color</item>

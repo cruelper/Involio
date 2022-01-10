@@ -8,5 +8,6 @@ class LogInActivity : AppCompatActivity() {
         supportActionBar?.hide();
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_log_in)
+
     }
 }

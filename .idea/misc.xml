@@ -5,6 +5,7 @@
       <map>
         <entry key="../../../../../layout/custom_preview.xml" value="0.221875" />
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.33055555555555555" />
+        <entry key="app/src/main/res/drawable/ic_add_shopping_cart_black_48dp.xml" value="0.21979166666666666" />
         <entry key="app/src/main/res/drawable/ic_add_shopping_cart_picture.xml" value="0.21197916666666666" />
         <entry key="app/src/main/res/drawable/ic_arrow_drop_down_picture.xml" value="0.21145833333333333" />
         <entry key="app/src/main/res/drawable/ic_bags_picture.xml" value="0.13240740740740742" />
@@ -12,6 +13,7 @@
         <entry key="app/src/main/res/drawable/ic_home_black_24dp.xml" value="0.13240740740740742" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.33055555555555555" />
         <entry key="app/src/main/res/drawable/ic_notifications_black_24dp.xml" value="0.13240740740740742" />
+        <entry key="app/src/main/res/drawable/ic_search.xml" value="0.22395833333333334" />
         <entry key="app/src/main/res/drawable/ic_settings_black_24dp.xml" value="0.21145833333333333" />
         <entry key="app/src/main/res/drawable/ic_settings_picture.xml" value="0.13240740740740742" />
         <entry key="app/src/main/res/drawable/ic_share_picture.xml" value="0.21145833333333333" />
@@ -20,28 +22,38 @@
         <entry key="app/src/main/res/drawable/ic_star_rate_picture.xml" value="0.21197916666666666" />
         <entry key="app/src/main/res/drawable/ic_stock_exchange_picture.xml" value="0.13240740740740742" />
         <entry key="app/src/main/res/layout/activity_bottom_menu.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/activity_log_in.xml" value="0.2947916666666667" />
+        <entry key="app/src/main/res/layout/activity_log_in.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_sign_in.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_stock_content.xml" value="0.25" />
         <entry key="app/src/main/res/layout/dialog_selection_portfolio.xml" value="0.21197916666666666" />
         <entry key="app/src/main/res/layout/fragment_dashboard.xml" value="0.1953125" />
+        <entry key="app/src/main/res/layout/fragment_exchange.xml" value="0.2078125" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.3388888888888889" />
         <entry key="app/src/main/res/layout/fragment_notifications.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_stock_content.xml" value="0.18" />
         <entry key="app/src/main/res/layout/head.xml" value="0.22708333333333333" />
         <entry key="app/src/main/res/layout/item_contact.xml" value="0.75" />
+        <entry key="app/src/main/res/layout/item_layout.xml" value="0.17604166666666668" />
         <entry key="app/src/main/res/layout/item_stock.xml" value="0.21770833333333334" />
+        <entry key="app/src/main/res/layout/item_stock_in_portfolio_detail.xml" value="0.5" />
         <entry key="app/src/main/res/layout/layout_portfolios_drop_list.xml" value="0.33" />
         <entry key="app/src/main/res/layout/layout_portfolios_drop_title.xml" value="0.10277777777777777" />
         <entry key="app/src/main/res/layout/portfolios_header.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/tab_first_fragment.xml" value="0.2234375" />
+        <entry key="app/src/main/res/layout/tab_fourth_fragment.xml" value="0.2234375" />
+        <entry key="app/src/main/res/layout/tab_second_fragment.xml" value="0.2234375" />
+        <entry key="app/src/main/res/layout/tab_third_fragment.xml" value="0.2234375" />
         <entry key="app/src/main/res/layout/toolbar.xml" value="0.1" />
         <entry key="app/src/main/res/layout/total_price_portfolios.xml" value="0.203125" />
         <entry key="app/src/main/res/menu/bottom_nav_menu.xml" value="0.2916666666666667" />
         <entry key="app/src/main/res/menu/portfilios_menu.xml" value="0.10277777777777777" />
+        <entry key="app/src/main/res/menu/portfolios_toolbar_menu.xml" value="0.203125" />
+        <entry key="app/src/main/res/menu/search_menu.xml" value="0.2078125" />
         <entry key="app/src/main/res/menu/stock_toolbar_menu.xml" value="0.19583333333333333" />
         <entry key="app/src/main/res/menu/toolbars_element_menu.xml" value="0.1" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher_logo.xml" value="0.24322916666666666" />
+        <entry key="app/src/main/res/xml/network_security_config.xml" value="0.35260416666666666" />
       </map>
     </option>
   </component>

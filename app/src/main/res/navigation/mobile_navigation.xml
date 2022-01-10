@@ -13,9 +13,9 @@
 
     <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="com.example.involio.ui.dashboard.DashboardFragment"
+        android:name="com.example.involio.ui.dashboard.ExchangeFragment"
         android:label="Биржа"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/fragment_exchange" />
 
     <fragment
         android:id="@+id/navigation_notifications"

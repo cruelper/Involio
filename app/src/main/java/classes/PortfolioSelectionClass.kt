@@ -4,26 +4,16 @@ import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import android.widget.AdapterView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.DialogFragment
 import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.involio.SignInActivity
-import android.content.Context
-
-import android.view.ViewGroup
-
-import android.view.LayoutInflater
-import android.widget.TextView
-import com.example.involio.LogInActivity
 import com.example.involio.R
 import com.example.involio.StockContentActivity
-import com.example.involio.ui.tabbs.PlaceholderFragment
 
 
 class PortfolioSelectionClass : DialogFragment() {
