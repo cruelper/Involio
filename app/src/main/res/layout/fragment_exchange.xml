@@ -1,18 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.dashboard.ExchangeFragment"
-    android:fitsSystemWindows="true">
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    android:background="@color/background_color">
 
-
-    <ListView
-        android:id="@+id/search_listview"
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent" />
+        android:layout_height="wrap_content"
+        android:background="@color/lightBar_color"
+        android:layout_marginBottom="20dp"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <Button
+        android:id="@+id/stocks_but"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:padding="10dp"
+        android:minHeight="50dp"
+        android:text="Акции"
+        android:background="@color/button_color"
+        android:textColor="@color/text_color"
+        android:enabled="true"
+        android:foreground="?android:attr/selectableItemBackground"/>
+
+    <Button
+        android:id="@+id/currency_but"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:minHeight="50dp"
+        android:text="Валюта"
+        android:background="@color/button_color"
+        android:textColor="@color/text_color"
+        android:enabled="true"
+        android:foreground="?android:attr/selectableItemBackground"/>
+
+    <Button
+        android:id="@+id/bookmarks_but"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:minHeight="50dp"
+        android:text="Избранное"
+        android:background="@color/lightBar_color"
+        android:textColor="@color/text_color"
+        android:enabled="false"
+        android:foreground="?android:attr/selectableItemBackground"/>
+</androidx.appcompat.widget.LinearLayoutCompat>

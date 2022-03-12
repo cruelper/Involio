@@ -10,13 +10,11 @@ private val TAB_TITLES = arrayOf(
     R.string.tab_text_1,
     R.string.tab_text_2,
     R.string.tab_text_3,
-    R.string.tab_text_4
+    R.string.tab_text_4,
+    R.string.tab_text_5,
     )
 
-/**
- * A [FragmentPagerAdapter] that returns a fragment corresponding to
- * one of the sections/tabs/pages.
- */
+
 class SectionsPagerAdapter(private val context: Context, fm: FragmentManager) :
     FragmentPagerAdapter(fm) {
 
@@ -26,6 +24,7 @@ class SectionsPagerAdapter(private val context: Context, fm: FragmentManager) :
             1 -> SecondTabFragment()
             2 -> ThirdTabFragment()
             3 -> FourthTabFragment()
+            4 -> FifthTabFragment()
             else -> throw IllegalStateException ("Bad tab position in tabbed stock content")
         }
     }

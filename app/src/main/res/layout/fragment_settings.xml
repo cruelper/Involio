@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.notifications.SettingsFragment"
+    android:fitsSystemWindows="true"
+    android:background="@color/background_color"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/lightBar_color"
+        android:layout_marginBottom="20dp"/>
+
+
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/switch1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Уведомления"
+        android:layout_margin="10dp"
+        android:theme="@style/switchStyle"
+        />
+
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/switch2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Уведомления на email"
+        android:layout_margin="10dp"
+        android:theme="@style/switchStyle"
+        />
+
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/switch3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Вход по паролю"
+        android:layout_margin="10dp"
+        android:theme="@style/switchStyle"
+        />
+
+    <Button
+        android:id="@+id/exit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="Выйти из аккаунта"
+        android:background="@color/button_color"
+        android:textColor="@color/text_color"/>
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>

@@ -1,24 +1,46 @@
 package com.example.involio.ui.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.*
 import android.widget.*
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import com.example.involio.R
-import com.example.involio.databinding.FragmentHomeBinding
 import androidx.appcompat.app.AppCompatActivity
 import classes.*
-import android.view.MenuInflater
+import androidx.appcompat.widget.AppCompatSpinner
+import androidx.appcompat.widget.Toolbar
+import androidx.recyclerview.widget.ConcatAdapter
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import classes.network.ApiClient
+import classes.network.dto.*
+import classes.network.utils.getJWT
+import com.example.involio.BottomMenuActivity
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import android.widget.TextView
 
-
-
+import android.view.LayoutInflater
+import android.view.ViewGroup
+import com.example.involio.StockContentActivity
+import com.google.gson.JsonObject
+import com.google.gson.JsonParser
+import org.json.JSONObject
 
 class HomeFragment : Fragment() {
 
-    private lateinit var homeViewModel: HomeViewModel
-    private var _binding: FragmentHomeBinding? = null
-    private val binding get() = _binding!!
+    var root: View? = null
+    lateinit var portfolios: List<PortfolioDto>
+    private var curTime: String = "all"
+    private var curCurrency: String = "rub"
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -26,37 +48,110 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        homeViewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
-        val root: View = binding.root
+        root = inflater.inflate(R.layout.fragment_home, container, false)
 
+        val toolbar: Toolbar = root!!.findViewById(R.id.toolbar_with_spinner)
+        val spinner: AppCompatSpinner = root!!.findViewById(R.id.spinner_in_toolbar)
+        val curActivity = (requireActivity() as AppCompatActivity)
+        curActivity.setSupportActionBar(toolbar)
+        curActivity.supportActionBar!!.setDisplayShowHomeEnabled(false)
+        curActivity.supportActionBar!!.setDisplayShowTitleEnabled(false)
+        portfolios = (requireActivity() as BottomMenuActivity).getPortfolios()
+        val spinnerAdapter = object : ArrayAdapter<String>(
+            requireActivity(), R.layout.portfolios_spinner_item, portfolios.map { it.name } + "Создать портфель"
+        ){
+            override fun getDropDownView(
+                position: Int,
+                convertView: View?,
+                parent: ViewGroup
+            ): View {
+                val v = super.getDropDownView(position, convertView, parent)
+                if (position == portfolios.size)
+                    (v as TextView).setTextColor(resources.getColor(R.color.darkBar_color))
+                return v
+            }
+        }
 
-        val actionBar: androidx.appcompat.app.ActionBar? = (activity as AppCompatActivity).supportActionBar
+        spinner.adapter = spinnerAdapter
+        spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+            }
 
-        setHasOptionsMenu(true)
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                if (position == portfolios.size) {
+                    Toast.makeText(activity, "Перенаправление на создание портфеля", Toast.LENGTH_SHORT).show()
+                    val intent: Intent = Intent(this@HomeFragment.requireActivity(), CreatingPortfolioActivity::class.java)
+                    intent.putExtra("isNoOnePortfolio", false)
+                    startActivity(intent)
+                }
+                else setPortfolioContents(position)
+                Toast.makeText(
+                    requireActivity(),
+                    "Выбран какой-то портфель!",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        }
 
         return root
     }
 
-    override fun onCreateOptionsMenu(menu: Menu, menuInflater: MenuInflater){
-        menuInflater.inflate(R.menu.portfolios_toolbar_menu, menu)
-    }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.select_portfolio -> {
-                val portfolioSelectionFrom = PortfolioSelectionClass()
-                portfolioSelectionFrom.show(parentFragmentManager, "PortfoliosSelection")
+    fun setPortfolioContents(id: Int) {
+        val portfolioInfoResponseCall: Call<BasicPortfolioInfoDto> =
+            ApiClient.getUserService().getBasicPortfolioInfo(
+                portfolios[id].id, getJWT(requireActivity().applicationContext), "No"
+            )
+        portfolioInfoResponseCall.enqueue(object : Callback<BasicPortfolioInfoDto> {
+            override fun onResponse(
+                call: Call<BasicPortfolioInfoDto>?,
+                response: Response<BasicPortfolioInfoDto>?
+            ) {
+                if (response?.isSuccessful!!) {
+                    setAdapters(response.body()!!)
+                    Toast.makeText(activity, "Выбран портфель: ${portfolios[id].name}", Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(activity, "Ошибка при получении данных!", Toast.LENGTH_SHORT)
+                        .show()
+                }
             }
-            R.id.share_portfolio -> Toast.makeText(requireContext(), "делимся портфелем", Toast.LENGTH_SHORT).show()
-        }
-        return true
+
+            override fun onFailure(call: Call<BasicPortfolioInfoDto>?, t: Throwable?) {
+                Toast.makeText(activity, t?.localizedMessage, Toast.LENGTH_SHORT).show()
+            }
+        })
     }
 
+    private fun setAdapters(basicPortfolioInfoDto: BasicPortfolioInfoDto) {
+        val rvStocks = requireActivity().findViewById<View>(R.id.rvContacts) as RecyclerView
+        val stocks = Stock.createStocksList(basicPortfolioInfoDto.stocksInPortfolio!!, curTime)
+        val adapter = StocksAdapter(stocks)
+        adapter.setOnItemClickListener(object : StocksAdapter.OnItemClickListener {
+            override fun onItemClick(itemView: View?, position: Int) {
+                val name = stocks[position].name
+                Toast.makeText(
+                    requireActivity(),
+                    "открывается вкладка с инфой по $name",
+                    Toast.LENGTH_SHORT
+                ).show()
+                itemView?.context?.startActivity(
+                    Intent(
+                        itemView.context,
+                        StockContentActivity::class.java
+                    )
+                )
+            }
+        })
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+
+        val headerAdapter = HeaderAdapter(basicPortfolioInfoDto, adapter, requireActivity())
+
+        rvStocks.adapter = ConcatAdapter(headerAdapter, adapter)
+        rvStocks.layoutManager = LinearLayoutManager(requireActivity())
     }
 }
-

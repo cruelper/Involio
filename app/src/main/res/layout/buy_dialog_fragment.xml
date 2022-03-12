@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:background="@color/darkBar_color"
+    android:padding="20dp">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Добавление акции в портфель"
+        android:textColor="@color/text_color"
+        android:textSize="18sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
+
+    <View
+        android:layout_width="wrap_content"
+        android:background="@drawable/separator"
+        android:layout_height="2dp"
+        android:layout_marginVertical="10dp"
+        app:layout_constraintTop_toBottomOf="@id/title"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
+
+    <TextView
+        android:id="@+id/textViewPortfolio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Портфель"
+        android:textColor="@color/text_color"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/spinner_portfolios"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/spinner_portfolios" />
+
+    <androidx.appcompat.widget.AppCompatSpinner
+        android:id="@+id/spinner_portfolios"
+        style="@style/Widget.AppCompat.Spinner.Underlined"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/typeOfBrokerAccount"
+        android:padding="0dp"
+        android:prompt="@string/namePortfolio"
+        android:spinnerMode="dropdown"
+        android:theme="@style/editTextViewStyle"
+        android:layout_marginTop="40dp"
+        app:layout_constraintTop_toBottomOf="@id/title"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="@+id/count"/>
+
+    <TextView
+        android:id="@+id/textViewCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Количество"
+        android:textColor="@color/text_color"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/count"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/count" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/count"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:theme="@style/editTextViewStyle"
+        app:layout_constraintEnd_toEndOf="@+id/spinner_portfolios"
+        app:layout_constraintStart_toEndOf="@+id/textViewCount"
+        app:layout_constraintTop_toBottomOf="@id/spinner_portfolios">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/count_text_field"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:maxLines="1"
+            android:paddingLeft="10dp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <TextView
+        android:id="@+id/textViewPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Цена за лот"
+        android:textColor="@color/text_color"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/price"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/price" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/price"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:theme="@style/editTextViewStyle"
+        app:layout_constraintEnd_toEndOf="@+id/count"
+        app:layout_constraintStart_toStartOf="@+id/count"
+        app:layout_constraintTop_toBottomOf="@id/count"
+        android:layout_marginTop="10dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/price_text_field"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            android:maxLines="1"
+            android:paddingLeft="10dp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/textViewCommission"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Комиссия"
+        android:textColor="@color/text_color"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/commission"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/commission" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/commission"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:theme="@style/editTextViewStyle"
+        app:layout_constraintEnd_toStartOf="@+id/spinner_currency"
+        app:layout_constraintStart_toStartOf="@+id/price"
+        app:layout_constraintTop_toBottomOf="@id/price"
+        android:layout_marginTop="10dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/commission_text_field"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            android:maxLines="1"
+            android:paddingLeft="10dp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <androidx.appcompat.widget.AppCompatSpinner
+        android:id="@+id/spinner_currency"
+        style="@style/Widget.AppCompat.Spinner.Underlined"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="@string/typeOfBrokerAccount"
+        android:padding="0dp"
+        android:prompt="@string/namePortfolio"
+        android:spinnerMode="dropdown"
+        android:theme="@style/editTextViewStyle"
+        android:layout_marginStart="5dp"
+        app:layout_constraintBottom_toBottomOf="@+id/commission"
+        app:layout_constraintLeft_toRightOf="@+id/commission"
+        app:layout_constraintRight_toRightOf="@id/price" />
+
+    <TextView
+        android:id="@+id/textViewDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Дата"
+        android:textColor="@color/text_color"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/date"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/date" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/date"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:theme="@style/editTextViewStyle"
+        app:layout_constraintEnd_toEndOf="@+id/price"
+        app:layout_constraintStart_toStartOf="@+id/commission"
+        app:layout_constraintTop_toBottomOf="@id/commission"
+        android:layout_marginTop="10dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/date_text_field"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="date"
+            android:maxLines="1"
+            android:focusable="false"
+            android:hint="день/месяц/год"
+            android:paddingLeft="10dp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/checkboxText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Добавить за счет средств из портфеля"
+        android:textColor="@color/text_color"
+        android:textSize="16sp"
+        app:layout_constraintTop_toTopOf="@id/checkBox"
+        app:layout_constraintLeft_toLeftOf="@id/textViewDate"
+        app:layout_constraintRight_toLeftOf="@id/checkBox"
+        android:layout_marginRight="10dp"/>
+
+    <CheckBox
+        android:id="@+id/checkBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:theme="@style/checkboxStyle"
+        app:layout_constraintRight_toRightOf="@+id/date"
+        app:layout_constraintTop_toBottomOf="@id/date"
+        android:layout_marginTop="10dp" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

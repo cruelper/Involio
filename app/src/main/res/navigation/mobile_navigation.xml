@@ -19,7 +19,7 @@
 
     <fragment
         android:id="@+id/navigation_notifications"
-        android:name="com.example.involio.ui.notifications.NotificationsFragment"
+        android:name="com.example.involio.ui.notifications.SettingsFragment"
         android:label="Настройки"
-        tools:layout="@layout/fragment_notifications" />
+        tools:layout="@layout/fragment_settings" />
 </navigation>

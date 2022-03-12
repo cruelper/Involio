@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:padding="5dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_marginBottom="20dp">
+
+        <TextView
+            android:id="@+id/text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Текущая цена: "
+            android:textColor="@color/text_color"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/curPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="100$"
+            android:textColor="@color/text_color"
+            android:textSize="22sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@+id/text"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:drawableStart="@drawable/ic_notifications_24dp"
+            android:minHeight="0dp"
+            android:minWidth="0dp"
+            android:padding="5dp"
+            style="@style/ButtonStyle"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/priceInfoInTouchMoment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/text_color"
+        android:text="@string/getPriceInTouchMomentString"
+        android:textAlignment="center"
+        android:paddingBottom="10dp"/>
+
+    <com.github.mikephil.charting.charts.LineChart
+        android:id="@+id/chart"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_marginBottom="10dp" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="10dp">
+
+        <Button
+            android:id="@+id/dayBut"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/monthBut"
+            style="@style/ButtonStyle"
+            android:layout_marginRight="5dp"
+            android:text="День"
+            android:textSize="20sp"
+            android:minHeight="0dp"
+            android:paddingVertical="5dp"/>
+
+        <Button
+            android:id="@+id/monthBut"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toRightOf="@id/dayBut"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/yearBut"
+            style="@style/ButtonStyle"
+            android:layout_marginRight="5dp"
+            android:text="Месяц"
+            android:textSize="20sp"
+            android:minHeight="0dp"
+            android:paddingVertical="5dp"/>
+
+        <Button
+            android:id="@+id/yearBut"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toRightOf="@id/monthBut"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/allBut"
+            style="@style/ButtonStyle"
+            android:layout_marginRight="5dp"
+            android:text="Год"
+            android:textSize="20sp"
+            android:minHeight="0dp"
+            android:paddingVertical="5dp"/>
+
+        <Button
+            android:id="@+id/allBut"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toRightOf="@id/yearBut"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            style="@style/ButtonStyle"
+            android:text="Все"
+            android:textSize="20sp"
+            android:minHeight="0dp"
+            android:paddingVertical="5dp"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.appcompat.widget.LinearLayoutCompat>

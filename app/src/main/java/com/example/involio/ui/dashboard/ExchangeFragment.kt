@@ -1,71 +1,77 @@
 package com.example.involio.ui.dashboard
 
+import android.content.Intent
 import android.os.Bundle
+import android.os.Parcelable
 import android.view.*
-import android.widget.ArrayAdapter
-import android.widget.ListAdapter
-import android.widget.ListView
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.widget.SearchView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.AppCompatSpinner
+import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import classes.network.dto.PortfolioDto
+import com.example.involio.BottomMenuActivity
+import com.example.involio.CurrenciesInExchangeActivity
 import com.example.involio.R
+import com.example.involio.StockSearchEngineActivity
 import com.example.involio.databinding.FragmentExchangeBinding
+import com.example.involio.ui.home.CreatingPortfolioActivity
+import java.io.Serializable
 
 class ExchangeFragment : Fragment() {
-// для поиска
-    var stocks: List<String> = listOf("Apple", "AbbVie", "Delta Air Lines", "DR Horton Inc.", "Exxon Mobil Corp.", "Gap Inc.", "Kroger Co.", "Merck & Co. Inc.", "Галя", "Тал любимый")
-    var arrayAdapter: ArrayAdapter<String>? = null
-// для поиска
+    var root: View? = null
 
-    private lateinit var exchangeViewModel: ExchangeViewModel
-    private var _binding: FragmentExchangeBinding? = null
-    private val binding get() = _binding!!
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+
+
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        exchangeViewModel = ViewModelProvider(this).get(ExchangeViewModel::class.java)
-        _binding = FragmentExchangeBinding.inflate(inflater, container, false)
-        val root: View = binding.root
 
-        val ll = inflater.inflate(R.layout.fragment_exchange, container, false)
+        root = inflater.inflate(R.layout.fragment_exchange, container, false)
+        setListeners()
 
-        arrayAdapter = ArrayAdapter<String>(ll.context, android.R.layout.simple_list_item_1, stocks)
-        val a = (ll.findViewById(R.id.search_listview) as ListView)
-        a.adapter = arrayAdapter
+        val toolbar: Toolbar = root!!.findViewById(R.id.toolbar)
+        val curActivity = (requireActivity() as AppCompatActivity)
+        curActivity.setSupportActionBar(toolbar)
+        curActivity.supportActionBar!!.setDisplayShowHomeEnabled(false)
+        curActivity.supportActionBar!!.title = "Биржа"
 
-        val actionBar: androidx.appcompat.app.ActionBar? = (activity as AppCompatActivity).supportActionBar
-
-        setHasOptionsMenu(true)
 
         return root
     }
 
-    override fun onCreateOptionsMenu(menu: Menu, menuInflater: MenuInflater) {
-        menuInflater.inflate(R.menu.search_menu, menu)
+    private fun setListeners(){
+        val toSearchStockBut = root?.findViewById(R.id.stocks_but) as Button
+        toSearchStockBut.setOnClickListener {
+            val intent: Intent = Intent(requireActivity(), StockSearchEngineActivity::class.java)
+            val portfolios = (requireActivity() as BottomMenuActivity).getPortfolios()
+            val portfoliosId = portfolios.map { it.id }.toIntArray()
+            val portfoliosName = portfolios.map { it.name }.toTypedArray()
+            val portfoliosDateOfCreation = portfolios.map { it.dataOfCreation }.toLongArray()
+            intent.putExtra("portfoliosId",  portfoliosId)
+            intent.putExtra("portfoliosName",  portfoliosName)
+            intent.putExtra("portfoliosDates",  portfoliosDateOfCreation)
+            startActivity(intent)
+        }
 
-        val menuItem: MenuItem = menu.findItem(R.id.action_search)
-        val searchView: SearchView = menuItem.actionView as SearchView
-        searchView.queryHint = "Apple, Tal, USD"
+        val toCurrencyBut = root?.findViewById(R.id.currency_but) as Button
+        toCurrencyBut.setOnClickListener {
+            val intent: Intent = Intent(requireActivity(), CurrenciesInExchangeActivity::class.java)
+            startActivity(intent)
+        }
 
-        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String): Boolean {
-                return false
-            }
+        val toBookmarksBut = root?.findViewById(R.id.bookmarks_but) as Button
+        toBookmarksBut.setOnClickListener {
 
-            override fun onQueryTextChange(newText: String): Boolean {
-                arrayAdapter?.filter?.filter(newText)
-                return false
-            }
-        })
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+        }
     }
 }

@@ -9,10 +9,10 @@
     <color name="white">#FFFFFFFF</color>
 
     <!--GUI colors-->
-    <color name="backrgound_color">#170F11</color>
-    <color name="darkBar_color">#291524</color>
-    <color name="lightBar_color">#5C164E</color>
-    <color name="text_color">#E2FCEF</color>
-    <color name="button_color">#9B287B</color>
+    <color name="background_color">#1E1E24</color>
+    <color name="darkBar_color">#444140</color>
+    <color name="lightBar_color">#FFA987</color>
+    <color name="text_color">#F7EBE8</color>
+    <color name="button_color">#E54B4B</color>
 
 </resources>

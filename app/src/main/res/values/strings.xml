@@ -14,6 +14,7 @@
     <string name="tab_text_2">Динамика цены</string>
     <string name="tab_text_3">О компании</string>
     <string name="tab_text_4">Сделки</string>
+    <string name="tab_text_5">Дивиденды</string>
     <string name="username">Имя пользователя</string>
     <string name="authorization">Авторизация</string>
     <string name="loginBut">Войти</string>
@@ -21,5 +22,17 @@
     <string name="password">Пароль</string>
     <string name="registration">Регистрация</string>
     <string name="registrationBut">Зарегистрироваться</string>
+    <string name="namePortfolio">Название портфеля</string>
+    <string name="typeOfBrokerAccount">Тип брокерского счета</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="typeBrokerAccount">Тип брокерского счета</string>
+    <string name="Broker">Брокер</string>
+    <string name="dateOfCreateAccount">Дата открытия счета</string>
+    <string name="createPortfolio">Создать портфель</string>
+    <string name="nothing_searched">Ничего не найдено</string>
+    <string name="companyNameOrTicker">Название компании или тикер</string>
+    <string name="noStockInPortfolioText">Данной акции нет в ваших портфелях</string>
+    <string name="getPriceInTouchMomentString">Клик по графику - узнать цену в нужный момент</string>
 
 </resources>

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="editTextViewStyle" parent="Theme.Involio">
+        <item name="colorControlNormal">@color/text_color</item>
+        <item name="colorControlActivated">@color/button_color</item>
+        <item name="colorControlHighlight">@color/text_color</item>
+        <item name="android:textColorHighlight">@color/button_color</item>
+        <item name="android:textColorHint">@color/text_color</item>
+        <item name="android:textColorPrimary">@color/text_color</item>
+        <item name="android:textColorLink">@color/text_color</item>
+        <item name="android:autofilledHighlight">@android:color/transparent</item>
+        <item name="android:drawableTint">@color/button_color</item>
+        <item name="android:textColor">@color/text_color</item>
+        <item name="android:importantForAutofill">no</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="MyDatePicker" parent="Theme.Involio">
+        <!-- Text color -->
+        <item name="android:textColorPrimary">@color/text_color</item>
+        <!-- Divider color -->
+        <item name="colorControlNormal">@color/button_color</item>
+
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="bottomMenuStyle" parent="Theme.Involio">
+        <item name="colorPrimary">@color/button_color</item>
+        <item name="colorSecondary">@color/text_color</item>
+    </style>
+
+    <style name="textSizeBottomMenu" parent="Theme.Involio">
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="switchStyle" parent="Theme.Involio">
+        <item name="android:switchMinWidth">50dp</item>
+
+        <!-- active thumb & track color (30% transparency) -->
+        <item name="colorControlActivated">@color/lightBar_color</item>
+        <!-- inactive thumb color -->
+        <item name="colorSwitchThumbNormal">@color/text_color</item>
+        <!-- inactive track color (30% transparency) -->
+        <item name="android:colorForeground">@color/text_color</item>
+        <item name="android:textColor">@color/text_color</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="checkboxStyle" parent="Theme.Involio">
+        <item name="colorControlActivated">@color/button_color</item>
+        <item name="colorControlNormal">@color/text_color</item>
+    </style>
+
+    <style name="ButtonStyle" parent="Theme.Involio">
+        <item name="android:background">@color/button_color</item>
+        <item name="android:foreground">?android:attr/selectableItemBackground</item>
+        <item name="android:textColor">@color/text_color</item>
+    </style>
+
+    <style name="dataPickerDialogStyle" parent="ThemeOverlay.AppCompat.Dialog">
+        <item name="colorAccent">@color/button_color</item>
+        <item name="buttonBarNegativeButtonStyle">@style/NegativeButtonStyle</item>
+        <item name="android:background">@color/darkBar_color</item>
+    </style>
+
+    <style name="AlertDialogTheme" parent="ThemeOverlay.AppCompat.Dialog.Alert">
+        <item name="buttonBarNegativeButtonStyle">@style/NegativeButtonStyle</item>
+        <item name="buttonBarPositiveButtonStyle">@style/PositiveButtonStyle</item>
+        <item name="android:background">@color/darkBar_color</item>
+    </style>
+
+    <style name="NegativeButtonStyle" parent="Widget.AppCompat.Button.ButtonBar.AlertDialog">
+        <item name="android:textColor">@color/lightBar_color</item>
+        <item name="android:background">@color/darkBar_color</item>
+        <item name="android:layout_marginRight">20dp</item>
+        <item name="android:foreground">?android:attr/selectableItemBackground</item>
+    </style>
+
+    <style name="PositiveButtonStyle" parent="Widget.AppCompat.Button.ButtonBar.AlertDialog">
+        <item name="android:textColor">@color/button_color</item>
+        <item name="android:background">@color/darkBar_color</item>
+        <item name="android:foreground">?android:attr/selectableItemBackground</item>
+    </style>
+</resources>
+

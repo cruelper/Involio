@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/backrgound_color"
+    android:background="@color/background_color"
     android:padding="15dp"
     tools:context=".SignInActivity">
 
@@ -35,6 +35,7 @@
         app:layout_constraintVertical_bias="0.4">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/signin_email_text_field"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:drawableEnd="@drawable/ic_email_24"
@@ -44,7 +45,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/username_form"
+        android:id="@+id/username_signin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/username"
@@ -54,6 +55,7 @@
         app:layout_constraintTop_toBottomOf="@id/email_form">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/signin_username_text_field"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:drawableEnd="@drawable/ic_person_24"
@@ -63,16 +65,17 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/password_form"
+        android:id="@+id/password_signin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/password"
         android:theme="@style/editTextViewStyle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/username_form">
+        app:layout_constraintTop_toBottomOf="@id/username_signin">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/signin_password_text_field"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:drawableEnd="@drawable/ic_lock_24"
@@ -82,7 +85,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
-        android:id="@+id/login"
+        android:id="@+id/but_signin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/registrationBut"
@@ -93,6 +96,6 @@
         android:paddingHorizontal="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/password_form"/>
+        app:layout_constraintTop_toBottomOf="@+id/password_signin"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

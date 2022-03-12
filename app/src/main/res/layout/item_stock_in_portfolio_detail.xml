@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="5dp"
+    android:layout_margin="5dp"
+    android:background = "@color/darkBar_color">
+
+    <TextView
+        android:id="@+id/nameOfPortfolio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="Дивидендный портфель"
+        android:textColor="@color/text_color"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/percentageOnPortfolio"
+        app:layout_constraintStart_toEndOf="@+id/percentageOnPortfolio"
+        app:layout_constraintTop_toTopOf="@+id/percentageOnPortfolio" />
+
+    <TextView
+        android:id="@+id/stockTotalPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="777$: 5 акций * 168.3$"
+        android:textColor="@color/text_color"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/percentageOnPortfolio"
+        app:layout_constraintTop_toBottomOf="@+id/nameOfPortfolio" />
+
+    <TextView
+        android:id="@+id/priceChange"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:text="+32$ (+3.4%)"
+        app:layout_constraintStart_toEndOf="@+id/stockTotalPrice"
+        app:layout_constraintTop_toTopOf="@+id/stockTotalPrice"
+        android:textColor="@color/text_color"
+        android:textSize="16sp"/>
+
+    <TextView
+        android:id="@+id/meanPriceString"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Средняя цена покупки:"
+        app:layout_constraintStart_toStartOf="@+id/stockTotalPrice"
+        app:layout_constraintTop_toBottomOf="@+id/stockTotalPrice"
+        android:textColor="@color/text_color"
+        android:textSize="16sp"/>
+
+    <TextView
+        android:id="@+id/meanPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="136.3$"
+        app:layout_constraintStart_toStartOf="@+id/priceChange"
+        app:layout_constraintTop_toBottomOf="@+id/priceChange"
+        android:textColor="@color/text_color"
+        android:textSize="16sp"/>
+
+    <TextView
+        android:id="@+id/percentageOnPortfolio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="23.2% от"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:textColor="@color/text_color"
+        android:textSize="16sp"/>
+
+    <TextView
+        android:id="@+id/purchaseString"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Покупки:"
+        android:textColor="@color/text_color"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/meanPriceString"
+        app:layout_constraintTop_toBottomOf="@+id/meanPriceString" />
+
+    <LinearLayout
+        android:id="@+id/listOfPurchase"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="@+id/purchaseString"
+        app:layout_constraintTop_toBottomOf="@+id/purchaseString">
+
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/sell_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@color/button_color"
+        android:padding="5dp"
+
+        android:text="Продать"
+        android:textColor="@color/text_color"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
