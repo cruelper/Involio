@@ -12,7 +12,7 @@
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Добавление акции в портфель"
+        android:text="Добавление в портфель"
         android:textColor="@color/text_color"
         android:textSize="18sp"
         app:layout_constraintLeft_toLeftOf="parent"

@@ -81,5 +81,9 @@
         <item name="android:background">@color/darkBar_color</item>
         <item name="android:foreground">?android:attr/selectableItemBackground</item>
     </style>
+
+    <style name="CircularProgress" parent="Theme.Involio">
+        <item name="colorAccent">@color/lightBar_color</item>
+    </style>
 </resources>
 

@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
@@ -25,6 +26,10 @@ import retrofit2.Response
 
 class CurrenciesInExchangeActivity: AppCompatActivity()  {
 
+    lateinit var portfoliosId: IntArray
+    lateinit var portfoliosName: Array<String>
+    lateinit var portfoliosDates: LongArray
+
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
@@ -34,6 +39,10 @@ class CurrenciesInExchangeActivity: AppCompatActivity()  {
         this.setSupportActionBar(toolbar)
         this.supportActionBar!!.setDisplayShowHomeEnabled(true)
         this.supportActionBar!!.title = "Валюта"
+
+        portfoliosId = intent.extras!!.getIntArray("portfoliosId")!!
+        portfoliosName = intent.extras!!.getStringArray("portfoliosName")!!
+        portfoliosDates = intent.extras!!.getLongArray("portfoliosDates")!!
 
         setCurrencies()
     }
@@ -49,6 +58,8 @@ class CurrenciesInExchangeActivity: AppCompatActivity()  {
                 if (response?.isSuccessful!!) {
                     Toast.makeText(this@CurrenciesInExchangeActivity, "Список валют успешно загружен", Toast.LENGTH_SHORT).show()
                     setAdapters(response.body()!!)
+                    findViewById<ProgressBar>(R.id.progress_bar).visibility = View.GONE
+
                 } else {
                     Toast.makeText(this@CurrenciesInExchangeActivity, "Ошибка при получении данных!", Toast.LENGTH_SHORT).show()
                 }
@@ -71,9 +82,14 @@ class CurrenciesInExchangeActivity: AppCompatActivity()  {
                     "открывается вкладка с инфой по $name",
                     Toast.LENGTH_SHORT
                 ).show()
-                itemView?.context?.startActivity(
-                    Intent(itemView.context, StockContentActivity::class.java)
-                )
+                val intent: Intent = Intent(this@CurrenciesInExchangeActivity, CurrencyContentActivity::class.java)
+                val currencyDto = currencies[position].first
+                intent.putExtra("nameCurrency", currencyDto.name)
+                intent.putExtra("id", currencyDto.id)
+                intent.putExtra("portfoliosId", portfoliosId)
+                intent.putExtra("portfoliosName", portfoliosName)
+                intent.putExtra("portfoliosDates", portfoliosDates)
+                startActivity(intent)
             }
         })
         rvCurrencies.adapter = adapter

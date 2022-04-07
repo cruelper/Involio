@@ -24,6 +24,7 @@ import android.widget.TextView
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.constraintlayout.widget.ConstraintLayout
 import com.example.involio.StockContentActivity
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
@@ -89,7 +90,10 @@ class HomeFragment : Fragment() {
                     intent.putExtra("isNoOnePortfolio", false)
                     startActivity(intent)
                 }
-                else setPortfolioContents(position)
+                else {
+                    root!!.findViewById<ProgressBar>(R.id.progress_bar).visibility = View.VISIBLE
+                    setPortfolioContents(position)
+                }
                 Toast.makeText(
                     requireActivity(),
                     "Выбран какой-то портфель!",
@@ -113,8 +117,10 @@ class HomeFragment : Fragment() {
                 response: Response<BasicPortfolioInfoDto>?
             ) {
                 if (response?.isSuccessful!!) {
+                    root!!.findViewById<ConstraintLayout>(R.id.total_price_bar).visibility = View.VISIBLE
                     setAdapters(response.body()!!)
                     Toast.makeText(activity, "Выбран портфель: ${portfolios[id].name}", Toast.LENGTH_SHORT).show()
+                    root!!.findViewById<ProgressBar>(R.id.progress_bar).visibility = View.GONE
                 } else {
                     Toast.makeText(activity, "Ошибка при получении данных!", Toast.LENGTH_SHORT)
                         .show()
@@ -133,18 +139,15 @@ class HomeFragment : Fragment() {
         val adapter = StocksAdapter(stocks)
         adapter.setOnItemClickListener(object : StocksAdapter.OnItemClickListener {
             override fun onItemClick(itemView: View?, position: Int) {
-                val name = stocks[position].name
-                Toast.makeText(
-                    requireActivity(),
-                    "открывается вкладка с инфой по $name",
-                    Toast.LENGTH_SHORT
-                ).show()
-                itemView?.context?.startActivity(
-                    Intent(
-                        itemView.context,
-                        StockContentActivity::class.java
-                    )
-                )
+                val intent = Intent(requireActivity(), StockContentActivity::class.java)
+                intent.putExtra("nameCompany", stocks[position].name)
+                intent.putExtra("ticker", stocks[position].ticker)
+                intent.putExtra("idExchange", basicPortfolioInfoDto.stocksInPortfolio[position].idExchange)
+                intent.putExtra("nameExchange", basicPortfolioInfoDto.stocksInPortfolio[position].nameExchange)
+                intent.putExtra("portfoliosId", portfolios.map { it.id }.toIntArray())
+                intent.putExtra("portfoliosName", portfolios.map { it.name }.toTypedArray())
+                intent.putExtra("portfoliosDates", portfolios.map { it.dataOfCreation }.toLongArray())
+                itemView?.context?.startActivity(intent)
             }
         })
 

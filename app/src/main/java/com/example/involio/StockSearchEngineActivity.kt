@@ -7,9 +7,7 @@ import android.os.Bundle
 import android.os.PersistableBundle
 import android.text.TextUtils
 import android.view.View
-import android.widget.ArrayAdapter
-import android.widget.ListView
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import classes.network.ApiClient
@@ -23,7 +21,6 @@ import com.example.involio.ui.home.HomeFragment
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import android.widget.AdapterView
 import androidx.appcompat.app.AlertDialog
 import androidx.core.graphics.drawable.toDrawable
 import androidx.fragment.app.DialogFragment
@@ -99,6 +96,7 @@ class StockSearchEngineActivity: AppCompatActivity() {
         })
 
         binding.moreBut.setOnClickListener {
+            findViewById<ProgressBar>(R.id.progress_bar).visibility = View.VISIBLE
             if (isDefaultStocksActive) getAllStockByPages()
             else getStockByQuery(binding.searchView.query.toString())
         }
@@ -123,6 +121,8 @@ class StockSearchEngineActivity: AppCompatActivity() {
 
                     stocksAdapter.filter.filter("")
                     binding.moreBut.visibility = if (response.body()!!.size < pageSize) View.INVISIBLE else  View.VISIBLE
+
+                    findViewById<ProgressBar>(R.id.progress_bar).visibility = View.GONE
                 } else {
                     Toast.makeText(this@StockSearchEngineActivity, "Ошибка при получении данных!", Toast.LENGTH_SHORT).show()
                 }
@@ -150,6 +150,9 @@ class StockSearchEngineActivity: AppCompatActivity() {
                     stocksAdapter.filter.filter("")
                     binding.moreBut.visibility = if (response.body()!!.size < pageSize) View.INVISIBLE else  View.VISIBLE
                     binding.emptyView.visibility = if (response.body()!!.isEmpty() && pageNumSearchedStocks == 1) View.VISIBLE else View.INVISIBLE
+
+                    findViewById<ProgressBar>(R.id.progress_bar).visibility = View.GONE
+
                 } else {
                     Toast.makeText(this@StockSearchEngineActivity, "Ошибка при получении данных!", Toast.LENGTH_SHORT).show()
                 }

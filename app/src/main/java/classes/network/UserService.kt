@@ -64,4 +64,22 @@ interface UserService {
         @Header("Authorization") token: String,
     ): Call<Boolean>
 
+    @POST("/user/portfolios/add-currency")
+    fun addCurrencyToPortfolio(
+        @Body composition: CompositionOfPortfolioDto,
+        @Header("Authorization") token: String,
+    ): Call<Boolean>
+
+    @GET("/user/currency/{id}")
+    fun getCurrencyInfo(
+        @Path("id") id: String,
+        @Header("Authorization") token: String,
+    ): Call<CurrencyInfoDto>
+
+    @GET("/user/portfolios/{id}/extended")
+    fun getExtendedPortfolioInfo(
+        @Path("id") id: Int,
+        @Header("Authorization") token: String,
+    ): Call<ExtendedPortfolioInfoDto>
+
 }

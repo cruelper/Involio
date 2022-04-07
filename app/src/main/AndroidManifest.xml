@@ -27,6 +27,33 @@
         </activity>
 
         <activity
+            android:name=".CurrencyContentActivity"
+            android:exported="false"
+            android:label="@string/title_activity_stock_content"
+            android:theme="@style/Theme.Involio.NoActionBar" >
+            <intent-filter>
+                <action android:name="android.intent.action.LogInActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <meta-data android:name="android.support.PARENT_ACTIVITY"
+                android:value=".BottomMenuActivity"/>
+        </activity>
+
+        <activity
+            android:name=".ui.extendedPortfolioInfo.ExtendedInfoActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Involio.NoActionBar" >
+            <intent-filter>
+                <action android:name="android.intent.action.ui.extendedPortfolioInfo.ExtendedInfoActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <meta-data android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ui.extendedPortfolioInfo.ExtendedInfoActivity"/>
+        </activity>
+
+        <activity
             android:name=".StockSearchEngineActivity"
             android:label="@string/app_name"
             android:exported="false">

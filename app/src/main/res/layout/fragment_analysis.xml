@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:id="@+id/buttons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/assets"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="Активы"
+            style="@style/ButtonStyle"
+            android:layout_marginTop="1dp"
+            android:layout_marginEnd="1dp"/>
+
+        <Button
+            android:id="@+id/currency"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="Валюта"
+            style="@style/ButtonStyle"
+            android:layout_marginTop="1dp"
+            android:layout_marginEnd="1dp"/>
+
+        <Button
+            android:id="@+id/sectors"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="Отрасли"
+            style="@style/ButtonStyle"
+            android:layout_marginTop="1dp"
+            android:layout_marginEnd="1dp"/>
+
+        <Button
+            android:id="@+id/companies"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="Компании"
+            style="@style/ButtonStyle"
+            android:layout_marginTop="1dp"/>
+    </LinearLayout>
+
+
+    <com.github.mikephil.charting.charts.PieChart
+        android:id="@+id/chart"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_below="@id/buttons"
+        android:layout_marginTop="10dp"/>
+
+
+    <ListView
+        android:layout_marginTop="10dp"
+        android:id="@+id/pieces"
+        android:layout_below="@+id/chart"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginBottom="120dp" />
+
+
+
+
+</RelativeLayout>

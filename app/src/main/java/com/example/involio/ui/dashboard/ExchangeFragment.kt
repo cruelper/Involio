@@ -51,12 +51,12 @@ class ExchangeFragment : Fragment() {
 
     private fun setListeners(){
         val toSearchStockBut = root?.findViewById(R.id.stocks_but) as Button
+        val portfolios = (requireActivity() as BottomMenuActivity).getPortfolios()
+        val portfoliosId = portfolios.map { it.id }.toIntArray()
+        val portfoliosName = portfolios.map { it.name }.toTypedArray()
+        val portfoliosDateOfCreation = portfolios.map { it.dataOfCreation }.toLongArray()
         toSearchStockBut.setOnClickListener {
             val intent: Intent = Intent(requireActivity(), StockSearchEngineActivity::class.java)
-            val portfolios = (requireActivity() as BottomMenuActivity).getPortfolios()
-            val portfoliosId = portfolios.map { it.id }.toIntArray()
-            val portfoliosName = portfolios.map { it.name }.toTypedArray()
-            val portfoliosDateOfCreation = portfolios.map { it.dataOfCreation }.toLongArray()
             intent.putExtra("portfoliosId",  portfoliosId)
             intent.putExtra("portfoliosName",  portfoliosName)
             intent.putExtra("portfoliosDates",  portfoliosDateOfCreation)
@@ -66,6 +66,9 @@ class ExchangeFragment : Fragment() {
         val toCurrencyBut = root?.findViewById(R.id.currency_but) as Button
         toCurrencyBut.setOnClickListener {
             val intent: Intent = Intent(requireActivity(), CurrenciesInExchangeActivity::class.java)
+            intent.putExtra("portfoliosId",  portfoliosId)
+            intent.putExtra("portfoliosName",  portfoliosName)
+            intent.putExtra("portfoliosDates",  portfoliosDateOfCreation)
             startActivity(intent)
         }
 

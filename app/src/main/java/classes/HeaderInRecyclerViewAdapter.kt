@@ -2,17 +2,21 @@ package classes
 
 import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import androidx.core.content.ContextCompat.startActivity
 import androidx.core.graphics.drawable.toDrawable
 import androidx.recyclerview.widget.RecyclerView
 import classes.network.dto.BasicPortfolioInfoDto
 import classes.network.dto.ChangePrice
 import classes.network.dto.PortfolioPrice
+import com.example.involio.CurrenciesInExchangeActivity
 import com.example.involio.R
+import com.example.involio.ui.extendedPortfolioInfo.ExtendedInfoActivity
 
 class HeaderAdapter(
     private val basicInfo: BasicPortfolioInfoDto,
@@ -43,6 +47,8 @@ class HeaderAdapter(
             itemView.findViewById(R.id.allTime_but)
         )
 
+        private val extendedInfoBut: Button = itemView.findViewById(R.id.other_info_but)
+
         fun bind() {
             val context: Context = activity.applicationContext
             for (i in listOfCurrencyBut) i.setOnClickListener {
@@ -71,6 +77,13 @@ class HeaderAdapter(
             }
             listOfCurrencyBut[1].background = context.resources.getColor(R.color.lightBar_color).toDrawable()
             listOfTimeBut[1].background = context.resources.getColor(R.color.lightBar_color).toDrawable()
+
+            extendedInfoBut.setOnClickListener {
+                val intent: Intent = Intent(context, ExtendedInfoActivity::class.java)
+                intent.putExtra("namePortfolio",  basicInfo.name)
+                intent.putExtra("idPortfolio",  basicInfo.id)
+                activity.startActivity(intent)
+            }
             updateData()
         }
 

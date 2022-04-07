@@ -11,7 +11,6 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.involio.databinding.ActivityStockContentBinding
 import androidx.appcompat.widget.Toolbar
 import classes.network.ApiClient
-import classes.network.dto.StockInfoDto
 import classes.network.utils.getJWT
 import retrofit2.Call
 import retrofit2.Callback
@@ -22,31 +21,30 @@ import android.widget.ArrayAdapter
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.AppCompatSpinner
 import com.google.android.material.textfield.TextInputEditText
-
 import android.app.DatePickerDialog
 import android.widget.ProgressBar
-import classes.network.dto.CompositionOfPortfolioDto
-import com.example.involio.ui.tabbs.StockSectionsPagerAdapter
+import classes.network.dto.*
+import com.example.involio.ui.tabbs.CurrencySectionsPagerAdapter
 import java.util.*
 
 
-class StockContentActivity : AppCompatActivity() {
+class CurrencyContentActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityStockContentBinding
-    lateinit var stockInfo: StockInfoDto
+    lateinit var currencyInfo: StockInfoDto
     private var dateOfPurchase: Long = 946684800000 // 01.01.2000
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         binding = ActivityStockContentBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
-        supportActionBar!!.title = intent.extras!!.getString("nameCompany")
-        supportActionBar!!.subtitle = intent.extras!!.getString("ticker") + " | " + intent.extras!!.getString("nameExchange")
+        supportActionBar!!.title = intent.extras!!.getString("nameCurrency")
+        supportActionBar!!.subtitle = intent.extras!!.getString("id")
+
 
         setData()
     }
@@ -58,21 +56,13 @@ class StockContentActivity : AppCompatActivity() {
     }
 
     private fun setAdapterAndToolbar(){
-        val sectionsPagerAdapter = StockSectionsPagerAdapter(this, supportFragmentManager)
+        val sectionsPagerAdapter = CurrencySectionsPagerAdapter(this, supportFragmentManager)
         val viewPager: ViewPager = binding.viewPager
         viewPager.adapter = sectionsPagerAdapter
-        viewPager.offscreenPageLimit = 4
+        viewPager.offscreenPageLimit = 3
         viewPager.currentItem = 1
         val tabs: TabLayout = binding.tabs
         tabs.setupWithViewPager(viewPager)
-//        tabs.addOnTabSelectedListener(object : OnTabSelectedListener {
-//            override fun onTabSelected(tab: TabLayout.Tab) {
-//                //do stuff here
-//            }
-//
-//            override fun onTabUnselected(tab: TabLayout.Tab) {}
-//            override fun onTabReselected(tab: TabLayout.Tab) {}
-//        })
 
         val fab: View = findViewById(R.id.fab)
         fab.setOnClickListener { view ->
@@ -81,23 +71,42 @@ class StockContentActivity : AppCompatActivity() {
     }
 
     private fun setData(){
-        val responseCall: Call<StockInfoDto> = ApiClient.getUserService().getStockInfo(
-            intent.extras!!.getString("ticker")!!, intent.extras!!.getInt("idExchange"), getJWT(applicationContext)
+        val responseCall: Call<CurrencyInfoDto> = ApiClient.getUserService().getCurrencyInfo(
+            intent.extras!!.getString("id")!!, getJWT(applicationContext)
         )
-        responseCall.enqueue(object : Callback<StockInfoDto> {
-            override fun onResponse(call: Call<StockInfoDto>?, response: Response<StockInfoDto>?) {
+        responseCall.enqueue(object : Callback<CurrencyInfoDto> {
+            override fun onResponse(call: Call<CurrencyInfoDto>?, response: Response<CurrencyInfoDto>?) {
                 if (response?.isSuccessful!!) {
-                    Toast.makeText(this@StockContentActivity, "Данные получены успешно!", Toast.LENGTH_SHORT).show()
-                    stockInfo = response.body()!!
-                    setAdapterAndToolbar()
                     findViewById<ProgressBar>(R.id.progress_bar).visibility = View.GONE
+                    Toast.makeText(this@CurrencyContentActivity, "Данные получены успешно!", Toast.LENGTH_SHORT).show()
+                    val response = response.body()!!
+                    currencyInfo = StockInfoDto(
+                        nameExchangeSource = "",
+                        nameOtherExchanges = emptyList(),
+                        currentPrice = response.currentPriceInRuble,
+                        currencySign = "₽",
+                        inPortfolio = response.inPortfolio,
+                        dayInterval = response.dayInterval,
+                        weekInterval = response.weekInterval,
+                        monthInterval = response.monthInterval,
+                        yearInterval = response.yearInterval,
+                        fullInterval = response.fullInterval,
+                        nameCompany = "",
+                        nameCountry = "",
+                        descriptionCompany = "",
+                        branch = emptyList(),
+                        sector = emptyList(),
+                        transactions = emptyList(),
+                        dividends = emptyList(),
+                    )
+                    setAdapterAndToolbar()
                 } else {
-                    Toast.makeText(this@StockContentActivity, "Ошибка при получении данных!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@CurrencyContentActivity, "Ошибка при получении данных!", Toast.LENGTH_SHORT).show()
                 }
             }
 
-            override fun onFailure(call: Call<StockInfoDto>?, t: Throwable?) {
-                Toast.makeText(this@StockContentActivity, t?.localizedMessage, Toast.LENGTH_SHORT).show()
+            override fun onFailure(call: Call<CurrencyInfoDto>?, t: Throwable?) {
+                Toast.makeText(this@CurrencyContentActivity, t?.localizedMessage, Toast.LENGTH_SHORT).show()
             }
         })
     }
@@ -125,14 +134,14 @@ class StockContentActivity : AppCompatActivity() {
         // add data on spinner
         val portfoliosSpinner: AppCompatSpinner = promptsView.findViewById(R.id.spinner_portfolios)
         portfoliosSpinner.adapter = ArrayAdapter<String>(
-            this@StockContentActivity,
+            this@CurrencyContentActivity,
             R.layout.list_of_spinner,
             intent.extras!!.get("portfoliosName") as Array<String>
         )
 
         val currencySpinner: AppCompatSpinner = promptsView.findViewById(R.id.spinner_currency)
         currencySpinner.adapter = ArrayAdapter<String>(
-            this@StockContentActivity,
+            this@CurrencyContentActivity,
             R.layout.list_of_spinner,
             listOf("₽", "$", "€")
         )
@@ -184,44 +193,44 @@ class StockContentActivity : AppCompatActivity() {
                 else -> "eur"
             }
             if (portfolioDateOfCreation >  dateOfPurchase)
-                Toast.makeText(this@StockContentActivity, "Ошибка! Выбранная дата предшествует дате создания портфеля", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@CurrencyContentActivity, "Ошибка! Выбранная дата предшествует дате создания портфеля", Toast.LENGTH_SHORT).show()
             else if (count == null || count <= 0)
-                Toast.makeText(this@StockContentActivity, "Количество должно быть целым числом!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@CurrencyContentActivity, "Количество должно быть целым числом!", Toast.LENGTH_SHORT).show()
             else if (price == null || price <= 0)
-                Toast.makeText(this@StockContentActivity, "Цена не является вещественным числом!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@CurrencyContentActivity, "Цена не является вещественным числом!", Toast.LENGTH_SHORT).show()
             else if (commission == null || commission <= 0)
-                Toast.makeText(this@StockContentActivity, "Коммиссия не является вещественным числом!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@CurrencyContentActivity, "Коммиссия не является вещественным числом!", Toast.LENGTH_SHORT).show()
             else {
-                queryToAddStockToPortfolio(
+                queryToAddCurrencyToPortfolio(
                     CompositionOfPortfolioDto(
-                    idPortfolio = (intent.extras!!.get("portfoliosId") as IntArray)[portfoliosSpinner.selectedItemPosition],
-                    ticker = intent.extras!!.getString("ticker")!!,
-                    idExchange = intent.extras!!.getInt("idExchange"),
-                    date = dateOfPurchase,
-                    count = count,
-                    priceOfUnit = price,
-                    commission = commission,
-                    currencyCommissionTicker = currencyTicker,
-                ))
+                        idPortfolio = (intent.extras!!.get("portfoliosId") as IntArray)[portfoliosSpinner.selectedItemPosition],
+                        ticker = intent.extras!!.getString("id")!!,
+                        idExchange = -1,
+                        date = dateOfPurchase,
+                        count = count,
+                        priceOfUnit = price,
+                        commission = commission,
+                        currencyCommissionTicker = currencyTicker,
+                    ))
                 alertDialog.dismiss()
             }
         }
     }
 
-    private fun queryToAddStockToPortfolio(composition: CompositionOfPortfolioDto){
-        val responseCall: Call<Boolean> = ApiClient.getUserService().addStockToPortfolio(
+    private fun queryToAddCurrencyToPortfolio(composition: CompositionOfPortfolioDto){
+        val responseCall: Call<Boolean> = ApiClient.getUserService().addCurrencyToPortfolio(
             composition, getJWT(applicationContext)
         )
         responseCall.enqueue(object : Callback<Boolean> {
             override fun onResponse(call: Call<Boolean>?, response: Response<Boolean>?) {
                 if (response?.isSuccessful!! && response.body() == true)
-                    Toast.makeText(this@StockContentActivity, "Добавление акции прошло успешно!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@CurrencyContentActivity, "Добавление валюты прошло успешно!", Toast.LENGTH_SHORT).show()
                 else
-                    Toast.makeText(this@StockContentActivity, "Ошибка! Попробуйте добавить акции снова", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@CurrencyContentActivity, "Ошибка! Попробуйте добавить валюту снова", Toast.LENGTH_SHORT).show()
             }
 
             override fun onFailure(call: Call<Boolean>?, t: Throwable?) {
-                Toast.makeText(this@StockContentActivity, t?.localizedMessage, Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@CurrencyContentActivity, t?.localizedMessage, Toast.LENGTH_SHORT).show()
             }
         })
     }

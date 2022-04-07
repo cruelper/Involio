@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/nameBroker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Название брокера"
+        android:textColor="@color/text_color"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/divider"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/divider"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="|"
+        android:textAlignment="center"
+        android:textColor="@color/text_color"
+        android:textSize="20sp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/nameBroker"
+        app:layout_constraintRight_toLeftOf="@+id/typeOfBrokerAccount" />
+
+    <TextView
+        android:id="@+id/typeOfBrokerAccount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Тип брокерского счета"
+        android:textColor="@color/text_color"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/divider"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/addIndices"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/ButtonStyle"
+        android:text="Дабавить график индекса"
+        android:minHeight="0dp"
+        android:padding="10dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/divider"
+        app:layout_constraintRight_toLeftOf="@+id/rub"
+        android:layout_marginVertical="10dp"
+        android:layout_marginRight="5dp"/>
+
+    <Button
+        android:id="@+id/rub"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        style="@style/ButtonStyle"
+        android:text="₽"
+        android:minHeight="0dp"
+        android:minWidth="0dp"
+        android:paddingVertical="10dp"
+        app:layout_constraintLeft_toRightOf="@+id/addIndices"
+        app:layout_constraintTop_toBottomOf="@id/divider"
+        app:layout_constraintRight_toLeftOf="@+id/usd"
+        android:layout_marginVertical="10dp"/>
+
+    <Button
+        android:id="@+id/usd"
+        style="@style/ButtonStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="5dp"
+        android:minWidth="0dp"
+        android:minHeight="0dp"
+        android:paddingVertical="10dp"
+        android:text="$"
+        app:layout_constraintLeft_toRightOf="@+id/rub"
+        app:layout_constraintRight_toLeftOf="@+id/eur"
+        app:layout_constraintTop_toTopOf="@+id/rub" />
+
+    <Button
+        android:id="@+id/eur"
+        style="@style/ButtonStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:minWidth="0dp"
+        android:minHeight="0dp"
+        android:paddingVertical="10dp"
+        android:text="€"
+        app:layout_constraintLeft_toRightOf="@+id/usd"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/usd" />
+
+    <TextView
+        android:id="@+id/infoOnClick"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/getPriceInTouchMomentString"
+        android:textAlignment="center"
+        android:textSize="14sp"
+        android:textColor="@color/text_color"
+        app:layout_constraintTop_toBottomOf="@+id/rub"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginTop="10dp"/>
+
+
+    <com.github.mikephil.charting.charts.CombinedChart
+        android:id="@+id/chart"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintTop_toBottomOf="@+id/infoOnClick"
+        app:layout_constraintLeft_toLeftOf="parent"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/timeBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="10dp"
+        android:layout_marginTop="5dp"
+        app:layout_constraintTop_toBottomOf="@+id/chart"
+        app:layout_constraintLeft_toLeftOf="parent">
+
+        <Button
+            android:id="@+id/monthBut"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/yearBut"
+            style="@style/ButtonStyle"
+            android:layout_marginRight="5dp"
+            android:text="Месяц"
+            android:textSize="20sp"
+            android:minHeight="0dp"
+            android:paddingVertical="5dp"/>
+
+        <Button
+            android:id="@+id/yearBut"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toRightOf="@id/monthBut"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/allBut"
+            style="@style/ButtonStyle"
+            android:layout_marginRight="5dp"
+            android:text="Год"
+            android:textSize="20sp"
+            android:minHeight="0dp"
+            android:paddingVertical="5dp"/>
+
+        <Button
+            android:id="@+id/allBut"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toRightOf="@id/yearBut"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            style="@style/ButtonStyle"
+            android:text="Все"
+            android:textSize="20sp"
+            android:minHeight="0dp"
+            android:paddingVertical="5dp"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/incomeText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Доход:"
+        android:textSize="16sp"
+        android:textColor="@color/text_color"
+        app:layout_constraintTop_toBottomOf="@+id/timeBar"
+        app:layout_constraintLeft_toLeftOf="parent" />
+
+    <TextView
+        android:id="@+id/income"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1111$"
+        android:textSize="16sp"
+        android:textColor="@color/text_color"
+        app:layout_constraintTop_toBottomOf="@+id/timeBar"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <TextView
+        android:id="@+id/dividendsText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Дивидендов:"
+        android:textSize="16sp"
+        android:textColor="@color/text_color"
+        app:layout_constraintTop_toBottomOf="@+id/incomeText"
+        app:layout_constraintLeft_toLeftOf="parent" />
+
+    <TextView
+        android:id="@+id/dividends"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1111$"
+        android:textSize="16sp"
+        android:textColor="@color/text_color"
+        app:layout_constraintTop_toBottomOf="@+id/incomeText"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <TextView
+        android:id="@+id/brokerCommissionText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Коммиссии:"
+        android:textSize="16sp"
+        android:textColor="@color/text_color"
+        app:layout_constraintTop_toBottomOf="@+id/dividendsText"
+        app:layout_constraintLeft_toLeftOf="parent" />
+
+    <TextView
+        android:id="@+id/brokerCommission"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1111$"
+        android:textSize="16sp"
+        android:textColor="@color/text_color"
+        app:layout_constraintTop_toBottomOf="@+id/dividendsText"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <TextView
+        android:id="@+id/depositsAndWithdrawalsDiff"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Пополнений:"
+        android:textSize="16sp"
+        android:textColor="@color/text_color"
+        app:layout_constraintTop_toBottomOf="@+id/brokerCommissionText"
+        app:layout_constraintLeft_toLeftOf="parent" />
+
+    <TextView
+        android:id="@+id/depositsAndWithdrawalsDiffText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1111$"
+        android:textSize="16sp"
+        android:textColor="@color/text_color"
+        app:layout_constraintTop_toBottomOf="@+id/brokerCommissionText"
+        app:layout_constraintRight_toRightOf="parent" />
+
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

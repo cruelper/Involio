@@ -39,6 +39,15 @@
         android:textSize="20sp"
         android:visibility="gone" />
 
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="visible"
+        style="?android:attr/progressBarStyle"
+        android:indeterminateDrawable="@drawable/ic_progress_bar"
+        />
+
     <Button
         android:id="@+id/moreBut"
         android:layout_width="match_parent"

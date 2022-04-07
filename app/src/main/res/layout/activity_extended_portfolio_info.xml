@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/background_color">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:background="@color/lightBar_color" />
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="visible"
+        style="?android:attr/progressBarStyle"
+        android:indeterminateDrawable="@drawable/ic_progress_bar"
+        />
+
+    <Button
+        android:id="@+id/basicInfoBut"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Основное"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        app:layout_constraintEnd_toStartOf="@id/analysisBut"
+        style="@style/ButtonStyle"
+        android:layout_marginTop="1dp"/>
+
+    <Button
+        android:id="@+id/analysisBut"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Анализ"
+        app:layout_constraintStart_toEndOf="@+id/basicInfoBut"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        app:layout_constraintEnd_toStartOf="@id/TaxBut"
+        android:layout_marginHorizontal="1dp"
+        style="@style/ButtonStyle"
+        android:layout_marginTop="1dp"/>
+
+    <Button
+        android:id="@+id/TaxBut"
+        style="@style/ButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Налоги"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/analysisBut"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        android:layout_marginTop="1dp"/>
+
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="5dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/basicInfoBut" />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

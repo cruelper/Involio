@@ -6,12 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
 import classes.StockDetail
 import classes.StockDetailAdapter
+import com.example.involio.CurrencyContentActivity
 import com.example.involio.R
 import com.example.involio.StockContentActivity
 
@@ -31,7 +31,10 @@ class FirstTabFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val stockInfo = (requireActivity() as StockContentActivity).stockInfo
+
+        val stockInfo = try { (requireActivity() as StockContentActivity).stockInfo }
+        catch (ex: Exception){ (requireActivity() as CurrencyContentActivity).currencyInfo }
+
         if (stockInfo.inPortfolio.isEmpty()) root.findViewById<TextView>(R.id.noStockInPortfolioText).visibility = TextView.VISIBLE
         else{
             val rvStockInPortfolios = requireActivity().findViewById<View>(R.id.rvStockInPortfolios) as RecyclerView

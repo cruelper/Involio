@@ -1,5 +1,7 @@
 package classes.network.dto
 
+import java.util.*
+
 data class BasicPortfolioInfoDto(
     var id: Int,
     var name: String,
@@ -20,7 +22,7 @@ data class BasicPortfolioInfoDto(
 
     var stocksInPortfolio: List<StockInPortfolio>,
 
-)
+    )
 
 data class ChangePrice(
     val priceChangeOnDay: Double,
@@ -41,4 +43,6 @@ data class StockInPortfolio(
     var currentUnitPrice: Double,
     var partOfPortfolio: Double,
     var changePrice: ChangePrice,
+    var idExchange: Int,
+    var nameExchange: String,
 )

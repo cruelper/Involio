@@ -9,22 +9,18 @@ import com.example.involio.R
 private val TAB_TITLES = arrayOf(
     R.string.tab_text_1,
     R.string.tab_text_2,
-    R.string.tab_text_3,
     R.string.tab_text_4,
-    R.string.tab_text_5,
-    )
+)
 
 
-class SectionsPagerAdapter(private val context: Context, fm: FragmentManager) :
+class CurrencySectionsPagerAdapter(private val context: Context, fm: FragmentManager) :
     FragmentPagerAdapter(fm) {
 
     override fun getItem(position: Int): Fragment {
         return when(position){
             0 -> FirstTabFragment()
             1 -> SecondTabFragment()
-            2 -> ThirdTabFragment()
-            3 -> FourthTabFragment()
-            4 -> FifthTabFragment()
+            2 -> FourthTabFragment()
             else -> throw IllegalStateException ("Bad tab position in tabbed stock content")
         }
     }
